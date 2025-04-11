@@ -1,0 +1,56 @@
+definitions:
+  models.CountrySearchResponseModel:
+    properties:
+      capital:
+        example: New Delhi
+        type: string
+      currency:
+        example: ₹
+        type: string
+      name:
+        example: India
+        type: string
+      population:
+        example: 1380000000
+        type: integer
+    type: object
+  models.ErrorResponse:
+    properties:
+      error:
+        type: string
+    type: object
+info:
+  contact: {}
+paths:
+  /api/countries/search:
+    get:
+      consumes:
+      - application/json
+      description: Get country information by name
+      parameters:
+      - description: Country name
+        in: query
+        name: name
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/models.CountrySearchResponseModel'
+            type: array
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/models.ErrorResponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/models.ErrorResponse'
+      summary: Search for a country
+      tags:
+      - countries
+swagger: "2.0"

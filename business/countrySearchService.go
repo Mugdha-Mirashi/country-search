@@ -20,7 +20,7 @@ func NewCountrySearchService(cache cache.Cache, httpClient httpclient.Client) *C
 }
 
 func (service *CountrySearchService) CountrySearch(name string) (*models.CountrySearchResponseModel, error) {
-	if cachedData, found := service.cache.Get(name); found {
+	if cachedData, exists := service.cache.Get(name); exists {
 		if country, ok := cachedData.(*models.CountrySearchResponseModel); ok {
 			return country, nil
 		}

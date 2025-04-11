@@ -1,0 +1,86 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "contact": {}
+    },
+    "paths": {
+        "/api/countries/search": {
+            "get": {
+                "description": "Get country information by name",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "countries"
+                ],
+                "summary": "Search for a country",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Country name",
+                        "name": "name",
+                        "in": "query",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/models.CountrySearchResponseModel"
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/models.ErrorResponse"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/models.ErrorResponse"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "models.CountrySearchResponseModel": {
+            "type": "object",
+            "properties": {
+                "capital": {
+                    "type": "string",
+                    "example": "New Delhi"
+                },
+                "currency": {
+                    "type": "string",
+                    "example": "₹"
+                },
+                "name": {
+                    "type": "string",
+                    "example": "India"
+                },
+                "population": {
+                    "type": "integer",
+                    "example": 1380000000
+                }
+            }
+        },
+        "models.ErrorResponse": {
+            "type": "object",
+            "properties": {
+                "error": {
+                    "type": "string"
+                }
+            }
+        }
+    }
+}

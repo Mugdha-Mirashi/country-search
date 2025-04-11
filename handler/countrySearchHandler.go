@@ -28,8 +28,8 @@ func NewCountrySearchController(service *business.CountrySearchService) *Country
 // @Produce json
 // @Param name query string true "Country name"
 // @Success 200 {array} models.CountrySearchResponseModel
-// @Failure 400 {object} gin.H{"error": "Name is required"}
-// @Failure 500 {object} gin.H{"error": "Internal Server Error"}
+// @Failure 400 {object} models.ErrorResponse
+// @Failure 500 {object} models.ErrorResponse
 // @Router /api/countries/search [get]
 func (controller *CountrySearchController) HandleCountrySearch(ctx *gin.Context) {
 
